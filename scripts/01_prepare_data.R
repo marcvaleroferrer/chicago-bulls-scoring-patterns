@@ -1,0 +1,8 @@
+source("R/load.R")
+data <- scoring_data()
+stopifnot(nrow(as.data.frame(data)) == 3566L, nrow(data$games) == 84L)
+dir.create("data/processed", recursive = TRUE, showWarnings = FALSE)
+write.csv(as.data.frame(data), "data/processed/baskets.csv", row.names = FALSE)
+write.csv(series(data)$horizons, "data/processed/team_horizons.csv", row.names = FALSE)
+write.csv(data$games, "data/processed/game_index.csv", row.names = FALSE)
+print(data)

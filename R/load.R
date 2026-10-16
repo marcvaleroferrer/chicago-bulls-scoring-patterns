@@ -1,0 +1,5 @@
+if (dir.exists(".R-library")) .libPaths(c(normalizePath(".R-library"), .libPaths()))
+source("R/data.R")
+source("R/model.R")
+source("R/fit.R")
+source("R/io.R")

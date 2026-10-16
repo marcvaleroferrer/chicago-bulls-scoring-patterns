@@ -1,0 +1,13 @@
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+.R-library/
+Rplots.pdf
+.DS_Store
+Thumbs.db
+data/processed/*
+!data/processed/README.md
+reports/analysis.html
+reports/analysis_files/
+reports/analysis_cache/

@@ -1,0 +1,27 @@
+R version 4.4.2 (2024-10-31 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 26200)
+
+Matrix products: default
+
+
+locale:
+[1] C
+system code page: 65001
+
+time zone: Europe/Madrid
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base
+
+loaded via a namespace (and not attached):
+ [1] vctrs_0.6.5        cli_3.6.3          rlang_1.1.5        DBI_1.2.3
+ [5] KernSmooth_2.23-24 generics_0.1.3     stelfi_1.0.1       sf_1.0-19
+ [9] glue_1.8.0         colorspace_2.1-1   TMB_1.9.16         e1071_1.7-16
+[13] gridExtra_2.3      scales_1.3.0       grid_4.4.2         munsell_0.5.1
+[17] classInt_0.4-11    tibble_3.2.1       lifecycle_1.0.4    compiler_4.4.2
+[21] fmesher_0.2.0      dplyr_1.1.4        Rcpp_1.0.14        pkgconfig_2.0.3
+[25] lattice_0.22-6     R6_2.5.1           class_7.3-22       tidyselect_1.2.1
+[29] pillar_1.10.1      magrittr_2.0.3     Matrix_1.7-1       gtable_0.3.6
+[33] tools_4.4.2        proxy_0.4-27       ggplot2_3.5.1      units_0.8-5

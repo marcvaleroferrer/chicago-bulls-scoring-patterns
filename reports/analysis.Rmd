@@ -1,0 +1,121 @@
+---
+title: "Chicago Bulls scoring patterns"
+author: "Marc Valero Ferrer"
+output:
+  html_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = TRUE, message = FALSE)
+source("R/load.R")
+```
+
+## Academic context
+
+This report presents selected analyses from the 2024–2025 Mathematics thesis
+*Modelos estadísticos de tipo self-exciting*. It examines temporal clustering in
+Chicago Bulls made field goals, excluding free throws.
+
+## Data and model
+
+```{r data}
+data <- scoring_data()
+baskets <- as.data.frame(data)
+knitr::kable(data.frame(games = nrow(data$games), field_goals = nrow(baskets),
+  two_pointers = sum(baskets$tipo == "2"), three_pointers = sum(baskets$tipo == "3")))
+```
+
+The intensity is $\lambda(t)=\mu+\sum_{t_i<t}\theta e^{-\phi(t-t_i)}$.
+The history restarts for each game. DEoptim retains the bounds $(0,0,0)$ to
+$(2,2,100)$ and 1,000 iterations. Individual comparisons use the original
+midpoint sum; the joint fit uses the original trapezoid convention.
+
+## Historical reference values
+
+These are transcribed values, not recalculations. The thesis and archived HTML
+remain separate sources where their values disagree.
+
+```{r references}
+reference <- read.csv("results/reference/selected_results.csv")
+reference$source <- ifelse(reference$source == "TFG_memoria.pdf", "Thesis", "Archived HTML")
+view <- reference[c("case", "method", "source", "mu", "theta", "phi", "negative_log_likelihood")]
+names(view) <- c("Case", "Method", "Source", "mu", "theta", "phi", "NLL")
+knitr::kable(view, digits = 6)
+```
+
+## Selected-game estimates
+
+The reported NLL re-evaluates both parameter estimates using the same historical
+midpoint sum. It is not stelfi's internal objective; that value is stored
+separately in the CSV. The default stelfi model imposes theta < phi, whereas
+DEoptim uses the original box bounds without that constraint. The results
+therefore do not constitute a controlled comparison of optimizers.
+
+```{r selected}
+path <- "results/reproduced/comparison.csv"
+if (!file.exists(path)) path <- "results/reproduced/selected_deoptim.csv"
+if (file.exists(path)) {
+  estimates <- read.csv(path)
+  view <- estimates[c("case", "method", "mu", "theta", "phi", "negative_log_likelihood")]
+  names(view) <- c("Case", "Method", "mu", "theta", "phi", "Scored NLL")
+  knitr::kable(view, digits = 6)
+} else cat("Run the selected-game fitting scripts to generate this table.")
+```
+
+```{r plots, fig.width=8, fig.height=5.5}
+paths <- file.path("results/reproduced", c("deoptim_fits.rds", "stelfi_fits.rds"))
+if (file.exists(paths[1])) {
+  deoptim <- readRDS(paths[1])
+  stelfi <- if (file.exists(paths[2])) readRDS(paths[2]) else NULL
+  for (name in names(deoptim)) {
+    if (!is.null(stelfi)) {
+      limits <- comparison_limits(deoptim[[name]], stelfi[[name]])
+      plot(deoptim[[name]], ylim = limits)
+      plot(stelfi[[name]], ylim = limits)
+    } else plot(deoptim[[name]])
+  }
+}
+```
+
+Both methods use the same vertical range for each game, starting at zero.
+Rendering this report reads saved fit objects and does not rerun optimization.
+
+## Joint team estimate
+
+```{r season}
+path <- "results/reproduced/team_season.csv"
+if (file.exists(path)) {
+  view <- read.csv(path)[c("games", "mu", "theta", "phi", "negative_log_likelihood")]
+  names(view) <- c("Games", "mu", "theta", "phi", "NLL")
+  knitr::kable(view, digits = 6)
+} else cat("Run the joint fitting script to generate this table.")
+```
+
+## Warnings and interpretation
+
+```{r warnings}
+path <- "results/reproduced/stelfi_warnings.csv"
+if (file.exists(path)) {
+  recorded <- read.csv(path)
+  if (nrow(recorded)) knitr::kable(recorded)
+}
+```
+
+The covariance warning limits uncertainty interpretation for the affected fit.
+Finite point estimates are retained; no confidence interval is inferred from an
+invalid covariance calculation. Stelfi 1.0.1 does not retain its optimizer's
+convergence flag, so completion is not reported as proof of convergence.
+
+The thesis describes clustering in selected games and a near-zero team excitation
+estimate across the supplied season. These temporal patterns do not isolate a
+causal hot-hand effect. Court time and shot opportunities are not modelled;
+historical player windows may be truncated. Phi is poorly identified near
+theta = 0. The highlighted-game joint selections and confidence intervals remain
+outside this executable subset because their provenance is incomplete.
+
+## Session information
+
+```{r session}
+sessionInfo()
+```

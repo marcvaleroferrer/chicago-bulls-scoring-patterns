@@ -1,0 +1,18 @@
+case,subject,match_id,method,mu,theta,phi,negative_log_likelihood,source,locator
+team_7,Chicago Bulls,7,DEoptim,0.5898,0.0293,0.1189,45.5866,TFG_memoria.pdf,Table 5.2
+team_7,Chicago Bulls,7,stelfi,0.6155,0.0184,0.0305,46.7736,TFG_memoria.pdf,Table 5.2
+team_70,Chicago Bulls,70,DEoptim,0.8869,0.0213,0.3625,46.9568,TFG_memoria.pdf,Table 5.2
+team_70,Chicago Bulls,70,stelfi,0.9726,0,3.7220,47.9350,TFG_memoria.pdf,Table 5.2
+derozan_35,DeMar DeRozan,35,DEoptim,0.1667,1.9145,4.5207,23.7254,TFG_memoria.pdf,Table 7.1
+derozan_35,DeMar DeRozan,35,stelfi,0.1126,0.0396,0.0396,24.8547,TFG_memoria.pdf,Table 7.1
+lavine_53,Zach LaVine,53,DEoptim,0.0713,1.4475,2.2501,16.3561,TFG_memoria.pdf,Table 7.2
+lavine_53,Zach LaVine,53,stelfi,0.0790,1.1782,1.7026,16.5345,TFG_memoria.pdf,Table 7.2
+team_season,Chicago Bulls,,DEoptim,0.8930629,4.434563e-16,66.06074,3969.309,TFG_memoria.pdf,Table 5.4 (84 games)
+team_7,Chicago Bulls,7,DEoptim,0.5898,0.0293,0.1189,46.1727,Comparacion.html,Archived definitive HTML
+team_7,Chicago Bulls,7,stelfi,0.6155,0.0184,0.0305,46.7736,Comparacion.html,Archived definitive HTML
+team_70,Chicago Bulls,70,DEoptim,0.8869,0.0213,0.3625,47.8903,Comparacion.html,Archived definitive HTML
+team_70,Chicago Bulls,70,stelfi,0.9726,0,3.7220,47.9350,Comparacion.html,Archived definitive HTML
+derozan_35,DeMar DeRozan,35,DEoptim,0.1667,1.9145,4.5207,23.7254,Comparacion_DeMar_DeRozan.html,Archived definitive HTML
+derozan_35,DeMar DeRozan,35,stelfi,0.1126,0.0396,0.0396,23.3211,Comparacion_DeMar_DeRozan.html,Archived definitive HTML
+lavine_53,Zach LaVine,53,DEoptim,0.0713,1.4475,2.2501,16.3561,Comparacion_Zach_LaVine.html,Archived definitive HTML
+lavine_53,Zach LaVine,53,stelfi,0.0790,1.1782,1.7026,16.5345,Comparacion_Zach_LaVine.html,Archived definitive HTML

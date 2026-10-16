@@ -1,0 +1,2 @@
+"case","subject","match_id","games","method","integration","t_max","seed","iterations","evaluations","mu","theta","phi","negative_log_likelihood","optimizer_objective","warning_count"
+"team_season","Chicago Bulls",NA,84,"DEoptim","trapezoid",NA,20261005,1000,30030,0.893062858393724,3.04164708271608e-18,57.0934629646656,3969.30856861072,3969.30856861072,0
